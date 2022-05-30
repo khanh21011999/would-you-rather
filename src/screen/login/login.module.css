@@ -1,0 +1,158 @@
+.logo_text {
+  text-align: center;
+
+  font-size: 5vw;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+.headerContainer {
+  flex-direction: row;
+  display: flex;
+  /* margin-top: 4vh; */
+  justify-content: center;
+}
+.headerItem {
+  display: flex;
+
+  font-size: 20px;
+  transition: ease 0.2s;
+  font-weight: 500;
+}
+.headerItem:hover {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(0, 113, 15);
+  cursor: pointer;
+}
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.headerWrapper {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: 2px solid rgb(15, 111, 0);
+}
+.headerUserRightContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.userAvatarRightContainer {
+  height: 64px;
+  width: 64px;
+  border-radius: 32px;
+  padding-left: 2vw;
+}
+.userAvatarRight {
+  height: 100%;
+  width: 100%;
+  border-radius: 32px;
+}
+.userNameRight {
+  font-size: 24px;
+  font-weight: 700;
+}
+.loginWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 1vh;
+}
+.leftItemWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+.rightItemWrapper {
+  display: flex;
+  flex-direction: column;
+}
+@font-face {
+  font-family: "Pacifico", cursive;
+  src: url(../../fonts/Pacifico-Regular.ttf);
+}
+.loginHeaderText {
+  font-size: 8vh;
+  font-family: "Pacifico", cursive;
+  font-weight: bold;
+}
+.mainLoginAvatarContainer {
+  height: 24vh;
+  width: vh;
+}
+.leftRowHeaderContainer {
+  height: 4vw;
+  width: 12vw;
+  margin: 0 2vw 0 2vw;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mainAvatar {
+  height: 40vh;
+  width: 40vh;
+  border-radius: 20vh;
+  border: 3px rgb(151, 151, 151) solid;
+}
+.loginButton {
+  height: 6vh;
+  width: 20vw;
+  position: absolute;
+  right: 12vw;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  top: 45vh;
+
+  border-radius: 2vh;
+  border: 2px rgb(189, 189, 189) solid;
+  cursor: pointer;
+}
+.loginButton:hover {
+  animation: infinityColor 2s ease 0s infinite;
+}
+@keyframes infinityColor {
+  0% {
+    background-color: rgb(0, 76, 0);
+  }
+
+  25% {
+    background-color: rgb(0, 0, 112);
+  }
+  50% {
+    background-color: rgb(115, 6, 6);
+  }
+  75% {
+    background-color: rgb(149, 149, 8);
+  }
+  100% {
+    background-color: rgb(78, 0, 78);
+  }
+}
+.loginTextActive {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+}
+.loginText {
+  color: white;
+}
+@keyframes changeText {
+  0% {
+    font-size: 32px;
+  }
+  100% {
+    font-size: 24px;
+  }
+}

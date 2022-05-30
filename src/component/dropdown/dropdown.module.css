@@ -1,0 +1,89 @@
+.containerDropdown {
+  /* height: 6vh; */
+  padding: 1vh 1vh 1vh 1vh;
+  width: 25vw;
+  position: absolute;
+  right: 12vw;
+  z-index: 1000;
+  top: 30vh;
+  border: 3px rgb(49, 59, 49) solid;
+  display: flex;
+  margin-top: 4vh;
+  flex-direction: column;
+  border-radius: 16px;
+  background-color: white;
+}
+.dropdownTrigger {
+  flex-direction: row;
+  cursor: pointer;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 1vh 8px 1vh 8px;
+}
+.iconDropdownRotate {
+  animation: rotateArrow 1s 0;
+  color: green;
+}
+@keyframes rotateArrow {
+  0% {
+    transform: rotate(180deg);
+  }
+}
+.dropdown {
+  transition: height 0.5s ease;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  pointer-events: none;
+}
+.itemDropdown {
+  opacity: 0;
+  height: 0;
+  color: black;
+}
+.itemDropdownActive {
+  /* height: 25px; */
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+.dropdownMenuActive {
+  height: 40vh;
+  transition: height 0.5s ease;
+  overflow: auto;
+}
+
+.itemWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: 0.5s ease;
+  border-radius: 1vh;
+}
+.itemWrapper:hover {
+  background-color: rgb(218, 218, 218);
+  cursor: pointer;
+}
+.avatarItemActive {
+  display: flex;
+  height: 10vh;
+  width: 10vh;
+  border-radius: 7vh;
+  border: 3px rgb(130, 130, 130) solid;
+  margin: 2vh 1vh 1vh 1vh;
+  transition: opacity 0.5s ease;
+}
+.avatarItem {
+  height: 0;
+  width: 0;
+  opacity: 0;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+.currentUserText {
+  font-size: 24px;
+  font-weight: 500;
+}
