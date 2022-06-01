@@ -2,33 +2,70 @@
 import React from "react";
 import { UserI } from "../../interface/interface";
 import styles from "./header.module.css";
+import { useSelector } from "react-redux";
+import { loggedOut, RootState } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
-interface HeaderI {
-  isLogin?: boolean;
-  currentUser?: UserI | undefined;
-}
-export default function Header({ isLogin, currentUser }: HeaderI) {
-  const homeRow = ["Home", "New Question", "Leaderboard"];
+interface HeaderI {}
+export default function Header() {
+  const currentUser: UserI = useSelector(
+    (state: RootState) => state.auth.userInfo
+  );
+  const homeRow = [
+    {
+      name: "Home",
+      route: `/home-screen/${currentUser?.id}`,
+    },
+    {
+      name: "New Question",
+      route: `/home-screen/${currentUser?.id}`,
+    },
+    {
+      name: "Leaderboard",
+      route: `/home-screen/${currentUser?.id}`,
+    },
+  ];
+  const nav = useNavigate();
+  const auth = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+  console.log("auth", auth);
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.headerContainer}>
         {homeRow.map((item, index) => {
           return (
-            <div className={styles.leftRowHeaderContainer}>
-              <div className={styles.headerItem}>{item}</div>
+            <div
+              onClick={() => {
+                nav(item.route);
+              }}
+              className={styles.leftRowHeaderContainer}
+            >
+              <div className={styles.headerItem}>{item.name}</div>
             </div>
           );
         })}
       </div>
-      <div className={styles.headerUserRightContainer}>
-        <div className={styles.userNameRight}>Hello Abcd</div>
-        <div className={styles.userAvatarRightContainer}>
+      {auth.isLogin && (
+        <div className={styles.headerUserRightContainer}>
+          <div className={styles.userNameRight}>
+            Hello<div className={styles.userName}>{auth.userInfo.name}</div>
+          </div>
           <img
             className={styles.userAvatarRight}
-            src="https://learn.getgrav.org/system/images/media/thumb-jpg.png"
+            src={auth.userInfo.avatarURL}
           ></img>
+          <div
+            onClick={() => {
+              dispatch(loggedOut());
+              nav("/");
+            }}
+            className={styles.logout}
+          >
+            Logout
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

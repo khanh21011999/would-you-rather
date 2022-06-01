@@ -36,13 +36,14 @@
   flex-direction: row;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  border-bottom: 2px solid rgb(15, 111, 0);
+  justify-content: space-between;
+  border-bottom: 2px solid rgb(220, 220, 220);
 }
 .headerUserRightContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 .userAvatarRightContainer {
   height: 64px;
@@ -51,13 +52,17 @@
   padding-left: 2vw;
 }
 .userAvatarRight {
-  height: 100%;
-  width: 100%;
+  height: 48px;
+  width: 48px;
+  border: 2px rgb(191, 191, 191) solid;
+  margin: 0 8px 0 8px;
   border-radius: 32px;
 }
 .userNameRight {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
 }
 .loginWrapper {
   display: flex;
@@ -83,4 +88,20 @@
   height: 100%;
   width: 100%;
   border-radius: 16vh;
+}
+.logout {
+  font-size: 24px;
+  font-weight: 800;
+  margin-left: 4vw;
+  margin-right: 2vw;
+  cursor: pointer;
+  transition: color 0.5s ease;
+}
+.logout:hover {
+  color: rgb(152, 152, 152);
+}
+.userName {
+  font-size: 24;
+  padding-left: 4px;
+  font-weight: 700;
 }

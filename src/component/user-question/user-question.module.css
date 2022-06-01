@@ -1,0 +1,98 @@
+.container {
+  flex-direction: row;
+  height: 24vh;
+  margin: 2vh 2vh 2vh 2vh;
+
+  transition: background-color 0.5s ease;
+  align-items: center;
+  display: flex;
+  border-radius: 2vh;
+}
+
+.avatarImage {
+  height: 16vh;
+  width: 16vh;
+  border-radius: 8vh;
+  border: 1px solid;
+}
+.leftTriangle {
+  border-color: transparent rgb(235, 235, 235) transparent transparent;
+  border-style: solid;
+  border-width: 2vh 2vh 2vh 2vh;
+  height: 0px;
+  width: 0px;
+  flex: 1;
+}
+.questionContainer {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+}
+.questionDetailContainer {
+  display: flex;
+  flex-direction: column;
+  height: 18vh;
+  justify-content: space-between;
+  border-radius: 2vh;
+  background-color: rgb(235, 235, 235);
+  padding: 1vh 2vw 1vh 2vw;
+  flex: 100;
+}
+.userAsked {
+  font-size: 2vh;
+  font-weight: 600;
+  margin-top: 1vh;
+}
+.leftSideContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center;
+  
+  justify-items: center; */
+  width: 20%;
+}
+.wouldYouRatherText {
+  font-size: 24px;
+  font-weight: 400;
+  color: rgb(73, 73, 73);
+}
+.answerText {
+  display: flex;
+
+  align-items: center;
+  padding: 2vh 8vh 2vh 8vh;
+
+  cursor: pointer;
+  flex-direction: row;
+  border-radius: 4vh;
+  justify-content: space-between;
+  background-color: rgb(194, 194, 194);
+  transition: background-color 0.2s ease, transform 0.5s ease, color 0.2s ease;
+}
+.answerText:hover {
+  background-color: rgb(68, 68, 68);
+  color: white;
+  transform: translate(0.5vw, 0);
+  font-weight: 500;
+}
+.arrowIcon {
+  padding: 0 0 0 10px;
+}
+.questionTextDetailContainer {
+  display: flex;
+  padding-top: 20px;
+  flex-direction: column;
+}
+.bottomContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2vh;
+}
+.questionBrief {
+  font-size: 24px;
+  font-weight: 800;
+}

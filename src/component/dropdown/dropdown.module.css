@@ -2,8 +2,7 @@
   /* height: 6vh; */
   padding: 1vh 1vh 1vh 1vh;
   width: 25vw;
-  position: absolute;
-  right: 12vw;
+
   z-index: 1000;
   top: 30vh;
   border: 3px rgb(49, 59, 49) solid;
