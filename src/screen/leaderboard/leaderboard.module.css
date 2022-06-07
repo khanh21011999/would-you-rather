@@ -1,0 +1,99 @@
+.container {
+	max-height: 82vh;
+	min-height: 30vh;
+	flex-direction: column;
+
+	border-radius: 2vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	display: flex;
+	margin: 4vh 16vw 4vh 16vw;
+	/* padding: 2vh 2vh 2vh 2vh; */
+}
+.leaderboardText {
+	align-self: center;
+	display: flex;
+	flex-direction: row;
+	font-size: 48px;
+	font-weight: 800;
+}
+.itemContainer {
+	margin: 1vh 0 1vh 0;
+	height: 20vh;
+	border: 2px solid rgb(202, 202, 202);
+	border-radius: 2vh;
+	display: flex;
+	flex-direction: row;
+	padding: 1vh 2vh 1vh 2vh;
+	align-items: center;
+}
+.avatarContainer {
+	height: 8vw;
+	width: 8vw;
+	border-radius: 5vw;
+	border: 1px solid;
+	margin: 0 2vw 0 0;
+}
+.name {
+	font-size: 24px;
+	font-weight: 600;
+}
+.userInfo {
+	display: flex;
+	align-items: center;
+	flex: 4;
+}
+.dataInfo {
+	display: flex;
+	flex: 6;
+
+	height: 80%;
+	align-items: center;
+}
+.pointDetail {
+	display: flex;
+	flex-direction: column;
+	flex: 2;
+
+	justify-content: space-around;
+	height: 100%;
+}
+.pointDetailItemContainer {
+	padding: 2vh 0 2vh 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.pointDetailItemText {
+	/* margin: 0 8vw 0 0; */
+	font-size: 20px;
+	font-weight: 600;
+	color: rgb(92, 92, 92);
+}
+.pointDetailItemNumber {
+	font-size: 24px;
+	font-weight: 800;
+	margin: 0 2vw 0 0;
+}
+.pointNumberContainer {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	border-left: 3px rgb(192, 192, 192) solid;
+	height: 100%;
+}
+.pointNumber {
+	width: 80px;
+	height: 80px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	font-size: 32px;
+	color: white;
+	background-color: rgb(0, 132, 0);
+	border-radius: 40px;
+	border: 1px solid;
+	font-weight: 800;
+}

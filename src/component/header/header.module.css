@@ -1,107 +1,107 @@
 .logo_text {
-  text-align: center;
+	text-align: center;
 
-  font-size: 5vw;
+	font-size: 5vw;
 
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
 }
 .headerContainer {
-  flex-direction: row;
-  display: flex;
-  /* margin-top: 4vh; */
-  justify-content: center;
+	flex-direction: row;
+	display: flex;
+	/* margin-top: 4vh; */
+	justify-content: center;
 }
 .headerItem {
-  display: flex;
+	display: flex;
 
-  font-size: 20px;
-  transition: ease 0.2s;
-  font-weight: 500;
+	font-size: 20px;
+	transition: ease 0.2s;
+	font-weight: 500;
 }
 .headerItem:hover {
-  font-size: 24px;
-  font-weight: bold;
-  color: rgb(0, 113, 15);
-  cursor: pointer;
+	font-size: 24px;
+	font-weight: bold;
+	color: rgb(0, 113, 15);
+	cursor: pointer;
 }
 .container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 .headerWrapper {
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 2px solid rgb(220, 220, 220);
+	flex-direction: row;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 2px solid rgb(220, 220, 220);
 }
 .headerUserRightContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 .userAvatarRightContainer {
-  height: 64px;
-  width: 64px;
-  border-radius: 32px;
-  padding-left: 2vw;
+	height: 64px;
+	width: 64px;
+	border-radius: 32px;
+	padding-left: 2vw;
 }
 .userAvatarRight {
-  height: 48px;
-  width: 48px;
-  border: 2px rgb(191, 191, 191) solid;
-  margin: 0 8px 0 8px;
-  border-radius: 32px;
+	height: 48px;
+	width: 48px;
+	border: 2px rgb(191, 191, 191) solid;
+	margin: 0 8px 0 8px;
+	border-radius: 32px;
 }
 .userNameRight {
-  font-size: 24px;
-  font-weight: 400;
-  display: flex;
-  flex-direction: row;
+	font-size: 24px;
+	font-weight: 400;
+	display: flex;
+	flex-direction: row;
 }
 .loginWrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 3vh;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 3vh;
 }
 
 .mainLoginAvatarContainer {
-  height: 24vh;
-  width: vh;
+	height: 24vh;
+	width: vh;
 }
 .leftRowHeaderContainer {
-  height: 4vw;
-  width: 12vw;
-  margin: 0 2vw 0 2vw;
-  padding: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	height: 4vw;
+	width: 12vw;
+	margin: 0 2vw 0 2vw;
+	padding: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .mainAvatar {
-  height: 100%;
-  width: 100%;
-  border-radius: 16vh;
+	height: 100%;
+	width: 100%;
+	border-radius: 16vh;
 }
 .logout {
-  font-size: 24px;
-  font-weight: 800;
-  margin-left: 4vw;
-  margin-right: 2vw;
-  cursor: pointer;
-  transition: color 0.5s ease;
+	font-size: 24px;
+	font-weight: 800;
+	margin-left: 4vw;
+	margin-right: 2vw;
+	cursor: pointer;
+	transition: color 0.5s ease;
 }
 .logout:hover {
-  color: rgb(152, 152, 152);
+	color: rgb(152, 152, 152);
 }
 .userName {
-  font-size: 24;
-  padding-left: 4px;
-  font-weight: 700;
+	font-size: 24;
+	padding-left: 4px;
+	font-weight: 700;
 }

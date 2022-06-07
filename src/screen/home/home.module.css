@@ -1,6 +1,5 @@
 .questionContainer {
   height: 82vh;
-
   flex-direction: column;
   border: 2px solid rgb(220, 220, 220);
   border-radius: 2vh;
