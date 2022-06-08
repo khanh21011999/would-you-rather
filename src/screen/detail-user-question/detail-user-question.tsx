@@ -78,7 +78,13 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 	const user: UserI[] = useSelector((state: RootState) => state.user)
 	useEffect(() => {
 		getTotalAnswer()
+		getCurrentUserAns()
 	}, [])
+	const getCurrentUserAns = () => {
+		if (currAuth.answers[state.questionDetail.id] !== undefined) {
+			setCurrentAnswer(currAuth.answers[state.questionDetail.id])
+		}
+	}
 	const getTotalAnswer = () => {
 		user.forEach((item, index) => {
 			Object.entries(item.answers).forEach((item, index) => {
@@ -102,11 +108,15 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 			})
 		})
 	}
+	console.log('user', currAuth)
+	console.log('ques', state.questionDetail)
 	const showPercent = () => {
+		console.log('option1', vote.optionOne)
+		console.log('option2', vote.optionTwo)
 		if (answerChoice === 'optionTwo') {
 			return (
 				Math.round(
-					((vote.optionTwo / (vote.optionOne + vote.optionTwo + 1)) * 100 +
+					((vote.optionTwo / (vote.optionOne + vote.optionTwo)) * 100 +
 						Number.EPSILON) *
 						100,
 				) / 100
@@ -115,13 +125,13 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 		if (answerChoice === 'optionOne') {
 			return (
 				Math.round(
-					((vote.optionOne / (vote.optionOne + vote.optionTwo + 1)) * 100 +
+					((vote.optionOne / (vote.optionOne + vote.optionTwo)) * 100 +
 						Number.EPSILON) *
 						100,
 				) / 100
 			)
 		}
-		return 100
+		return -1
 	}
 	console.log('vote', vote)
 	const ChoiceOptions = (optionOne: string, optionTwo: string) => {
@@ -195,21 +205,27 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 						)}
 
 						<div className={styles.bottomContainer}>
-							{(isSelectFirst !== 0 || isAnswer) && (
-								<div className={styles.answerText}>
-									<div className={styles.bottomText}>Tip: </div>
-									<div className={styles.bottomTextDetail}>
-										You have same opinion as
-										<div className={styles.bottomPercent}>
-											{' '}
-											{showPercent()}%{' '}
+							{vote.optionOne + vote.optionTwo === 0 ? (
+								<div>Your answer is first</div>
+							) : (
+								<div>
+									{(isSelectFirst !== 0 || isAnswer) && (
+										<div className={styles.answerText}>
+											<div className={styles.bottomText}>Tip: </div>
+											<div className={styles.bottomTextDetail}>
+												You have same opinion as
+												<div className={styles.bottomPercent}>
+													{' '}
+													{showPercent()}%{' '}
+												</div>
+												users while other one was chosen by{' '}
+												<div className={styles.bottomPercentOther}>
+													{' '}
+													{100 - showPercent()}%{' '}
+												</div>
+											</div>
 										</div>
-										users while other one was chosen by{' '}
-										<div className={styles.bottomPercentOther}>
-											{' '}
-											{100 - showPercent()}%{' '}
-										</div>
-									</div>
+									)}
 								</div>
 							)}
 						</div>
