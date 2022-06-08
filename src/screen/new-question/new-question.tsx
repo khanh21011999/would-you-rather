@@ -48,6 +48,7 @@ export default function NewQuestion({ currentUser }: UserQuestionI) {
 	const selectedUser: UserI = useSelector(
 		(state: RootState) => state.auth.userInfo,
 	)
+	const currUser = useSelector((state: RootState) => state.auth)
 	const dispatch: AppDispatch = useDispatch()
 	const onAddNewQuestion = () => {
 		const newQuestion = {
@@ -61,7 +62,7 @@ export default function NewQuestion({ currentUser }: UserQuestionI) {
 		dispatch(modifyQuestion(onModifyUserList(generateUID())))
 		dispatch(addNewQuestion(newQuestion))
 		dispatch(addToNotFoundList(newQuestion))
-		nav(-1)
+		nav('/home-screen/' + currUser.userInfo.id)
 	}
 	const nav = useNavigate()
 	const currAuth: UserI = useSelector((state: RootState) => state.auth.userInfo)
