@@ -125,11 +125,11 @@ const NotFoundSlice = createSlice({
 	initialState: notFoundList,
 	reducers: {
 		addToNotFoundList: (state, action: PayloadAction<any>) => {
-			return state.push(action.payload)
+			return state.concat(action.payload)
 		},
 	},
 })
-export const {} = NotFoundSlice.actions
+export const { addToNotFoundList } = NotFoundSlice.actions
 
 // slice for all question
 
@@ -202,7 +202,7 @@ export const store = configureStore({
 		user: userSlice.reducer,
 		question: questionSlice.reducer,
 		auth: authSlice.reducer,
-
+		notFoundList: NotFoundSlice.reducer,
 		unAnsweredQuestion: unAnsweredQuestion.reducer,
 		answeredQuestion: answeredQuestion.reducer,
 	},

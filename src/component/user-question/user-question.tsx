@@ -16,8 +16,29 @@ export default function UserQuestion({
 	isAnswer,
 }: UserQuestionI) {
 	const nav = useNavigate()
+
+	const notFoundQues = useSelector((state: RootState) => state.notFoundList)
 	const currAuth: UserI = useSelector((state: RootState) => state.auth.userInfo)
 
+	const onNav = () => {
+		let notFoundFlag = false
+		notFoundQues.forEach((item) => {
+			if (item.id === questionItem.id) {
+				console.log('found!')
+				notFoundFlag = true
+			}
+		})
+		if (notFoundFlag) {
+			nav('/not-found')
+		} else {
+			nav(`/questions/${questionItem?.id}`, {
+				state: {
+					selectedUserAsk: questionItem?.author,
+					questionDetail: questionItem,
+				},
+			})
+		}
+	}
 	return (
 		<div className={styles.container}>
 			<div className={styles.leftSideContainer}>
@@ -40,12 +61,7 @@ export default function UserQuestion({
 						</div>
 						<div
 							onClick={() => {
-								nav(`/questions/${questionItem?.id}`, {
-									state: {
-										selectedUserAsk: questionItem?.author,
-										questionDetail: questionItem,
-									},
-								})
+								onNav()
 							}}
 							className={styles.answerText}
 						>

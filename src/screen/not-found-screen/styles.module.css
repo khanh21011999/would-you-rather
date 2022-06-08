@@ -1,0 +1,14 @@
+.notFound {
+	font-size: 64px;
+	font-weight: 800;
+	display: flex;
+	align-self: center;
+	color: rgb(164, 164, 164);
+}
+.container {
+	width: 100vw;
+	height: 80vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

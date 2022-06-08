@@ -8,17 +8,19 @@ import Home from '../screen/home/home'
 import Leaderboard from '../screen/leaderboard/leaderboard'
 import LoginScreen from '../screen/login/login'
 import NewQuestion from '../screen/new-question/new-question'
+import NotFoundScreen from '../screen/not-found-screen/not-found'
 
 export default function Navigation() {
 	return (
 		<Routes>
 			<Route path="/" element={<LoginScreen />} />
 			<Route element={<PrivateRoute />}>
-				<Route path="/home-screen/:userId" element={<Home />}></Route>
+				<Route path="/home-screen/:userId" element={<Home />} />
 				<Route path="/questions/:questionId" element={<UserQuestionDetail />} />
 				<Route path="/leaderboard" element={<Leaderboard />} />
 				<Route path="/add" element={<NewQuestion />} />
 				<Route path="*" element={<div>Nothing here</div>} />
+				<Route path="/not-found" element={<NotFoundScreen />} />
 			</Route>
 
 			{/* <Route path='./home-screen/leaderboard' element= */}

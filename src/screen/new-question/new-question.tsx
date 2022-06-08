@@ -7,6 +7,7 @@ import Header from '../../component/header/header'
 import { useNavigate } from 'react-router'
 import {
 	addNewQuestion,
+	addToNotFoundList,
 	AppDispatch,
 	modifyQuestion,
 	RootState,
@@ -59,6 +60,7 @@ export default function NewQuestion({ currentUser }: UserQuestionI) {
 
 		dispatch(modifyQuestion(onModifyUserList(generateUID())))
 		dispatch(addNewQuestion(newQuestion))
+		dispatch(addToNotFoundList(newQuestion))
 		nav(-1)
 	}
 	const nav = useNavigate()
