@@ -35,7 +35,7 @@ export default function Header() {
 			<div className={styles.headerContainer}>
 				{homeRow.map((item, index) => {
 					return (
-						<div className={styles.leftRowHeaderContainer}>
+						<div key={Math.random()} className={styles.leftRowHeaderContainer}>
 							<div
 								onClick={() => {
 									nav(item.route)
