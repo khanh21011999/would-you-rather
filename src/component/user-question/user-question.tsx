@@ -21,23 +21,12 @@ export default function UserQuestion({
 	const currAuth: UserI = useSelector((state: RootState) => state.auth.userInfo)
 
 	const onNav = () => {
-		let notFoundFlag = false
-		notFoundQues.forEach((item) => {
-			if (item.id === questionItem.id) {
-				console.log('found!')
-				notFoundFlag = true
-			}
+		nav(`/questions/${questionItem?.id}`, {
+			state: {
+				selectedUserAsk: questionItem?.author,
+				questionDetail: questionItem,
+			},
 		})
-		if (notFoundFlag) {
-			nav('/not-found')
-		} else {
-			nav(`/questions/${questionItem?.id}`, {
-				state: {
-					selectedUserAsk: questionItem?.author,
-					questionDetail: questionItem,
-				},
-			})
-		}
 	}
 	return (
 		<div className={styles.container}>
