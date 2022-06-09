@@ -1,11 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react'
-import { questionI, UserI } from '../../interface/interface'
+import { questionI } from '../../interface/interface'
 import styles from './user-question.module.css'
 import { MdOutlineArrowForwardIos } from 'react-icons/md'
 import { useNavigate } from 'react-router'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
 import { capitalizeFirstLetter } from '../../utilities/format-receive-data'
 interface UserQuestionI {
 	questionItem?: questionI
@@ -16,9 +13,6 @@ export default function UserQuestion({
 	isAnswer,
 }: UserQuestionI) {
 	const nav = useNavigate()
-
-	const notFoundQues = useSelector((state: RootState) => state.notFoundList)
-	const currAuth: UserI = useSelector((state: RootState) => state.auth.userInfo)
 
 	const onNav = () => {
 		nav(`/questions/${questionItem?.id}`, {

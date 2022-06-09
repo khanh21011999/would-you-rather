@@ -1,21 +1,22 @@
-import React, { CSSProperties, useEffect, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+// eslint-disable-next-line react-hooks/exhaustive-deps
+import { useEffect, useState } from 'react'
 import Header from '../../component/header/header'
 import styles from './home.module.css'
 import { useNavigate } from 'react-router-dom'
-import { useLocation, useParams } from 'react-router'
-import { LocationParams, questionI, UserI } from '../../interface/interface'
+import { useParams } from 'react-router'
+import { questionI, UserI } from '../../interface/interface'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-	addAnsweredQuestion,
 	AppDispatch,
 	initialAnsweredQuestion,
 	initialunAnsweredQuestion,
 	RootState,
 } from '../../redux/store'
 import UserQuestion from '../../component/user-question/user-question'
+import _ from 'lodash'
 
 export default function Home() {
-	const params: LocationParams = useLocation()
 	const { userId } = useParams()
 	const nav = useNavigate()
 	const user: UserI[] = useSelector((state: RootState) => state.user)
@@ -23,7 +24,6 @@ export default function Home() {
 	const question: questionI[] = useSelector(
 		(state: RootState) => state.question,
 	)
-	const [valid, setValid] = useState(false)
 
 	const currentUser = useSelector((state: RootState) => state.auth)
 	const answeredQuestion = useSelector(
@@ -33,13 +33,11 @@ export default function Home() {
 		(state: RootState) => state.unAnsweredQuestion,
 	)
 
-	const [answeredQues, setAnsweredQues] = useState([])
-	const [unAnsweredQues, setUnAnsweredQues] = useState([])
 	const [answeredSelected, setAnsweredSelected] = useState(false)
 	const getAnsweredQuestion = (): questionI[] => {
 		const answerQues: questionI[] = []
-		Object.entries(currentUser.userInfo.answers).forEach((item: any, index) => {
-			question.forEach((questionItem: any, questionIndex) => {
+		Object.entries(currentUser.userInfo.answers).forEach((item: any) => {
+			question.forEach((questionItem: any) => {
 				const currUser = user.filter(
 					(item: UserI) => item.id === questionItem.author,
 				)
@@ -52,11 +50,11 @@ export default function Home() {
 				}
 			})
 		})
-		return answerQues
+		return _.orderBy(answerQues, [(data) => data.timestamp, 'desc'])
 	}
 
 	const getUnAnsweredQuestion = (): questionI[] => {
-		const unAnsweredQues: questionI[] = question.map((itemQus, index) => {
+		const unAnsweredQues: questionI[] = question.map((itemQus) => {
 			const currUser = user.filter((item: UserI) => item.id === itemQus.author)
 			return {
 				...itemQus,
@@ -64,7 +62,7 @@ export default function Home() {
 			}
 		})
 
-		Object.entries(currentUser.userInfo.answers).forEach((item: any, index) => {
+		Object.entries(currentUser.userInfo.answers).forEach((item: any) => {
 			unAnsweredQues.forEach((questionItem: any, questionIndex) => {
 				if (item[0] === questionItem.id) {
 					unAnsweredQues.splice(questionIndex, 1)
@@ -72,12 +70,16 @@ export default function Home() {
 			})
 		})
 
-		const formatted = unAnsweredQues.map((itemQues, index) => {
+		const formatted = unAnsweredQues.map((itemQues) => {
 			return {
 				...itemQues,
 			}
 		})
-		return formatted
+		const sortedFormatted = _.orderBy(formatted, [
+			(data) => data.timestamp,
+			'desc',
+		])
+		return sortedFormatted.reverse()
 	}
 
 	const checkValidUser = () => {
@@ -91,10 +93,9 @@ export default function Home() {
 	}
 	useEffect(() => {
 		validNavigation()
-	}, [valid])
+	}, [])
 
 	const validNavigation = () => {
-		console.log('valid', valid)
 		if (checkValidUser()) {
 			return
 		} else {
@@ -102,9 +103,7 @@ export default function Home() {
 		}
 		return
 	}
-	console.log('userlist', user)
-	console.log('params', userId)
-
+	console.log('answer quest', getUnAnsweredQuestion())
 	// const formattedAnswerQuestion = () => {
 	// 	console.log(Object.entries(currentUser.userInfo.answers))
 
@@ -157,13 +156,13 @@ export default function Home() {
 					</div>
 				</div>
 				{answeredSelected &&
-					answeredQuestion.map((item: questionI, index: number) => {
+					answeredQuestion.map((item: questionI) => {
 						return (
 							<UserQuestion questionItem={item} key={Math.random()} isAnswer />
 						)
 					})}
 				{!answeredSelected &&
-					unAnswerQuestion.map((item: questionI, index: number) => {
+					unAnswerQuestion.map((item: questionI) => {
 						return <UserQuestion questionItem={item} key={Math.random()} />
 					})}
 			</div>
