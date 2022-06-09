@@ -18,23 +18,31 @@ import { useState } from 'react'
 import { capitalizeFirstLetter } from '../../utilities/format-receive-data'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import { useParams } from 'react-router'
 interface UserQuestionI {
 	currentUser?: UserI
 }
 export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 	const { state }: LocationParams = useLocation()
 	const [isSelectFirst, setSelectFirst] = useState(0)
-	const [isAnswer, setAnswer] = useState(!!state.questionDetail.selectedValue)
+	const [isAnswer, setAnswer] = useState(
+		!!state?.questionDetail?.selectedValue
+			? !!state?.questionDetail?.selectedValue
+			: false,
+	)
 	const [answerChoice, setCurrentAnswer] = useState('')
 	const [vote, setVote] = useState({
 		optionOne: 0,
 		optionTwo: 0,
 	})
-	const selectedUser: UserI = state.selectedUserAsk
-
+	const selectedUser: UserI = state?.selectedUserAsk
+	const question = useSelector((state: RootState) => state.question)
 	const dispatch: AppDispatch = useDispatch()
 	const nav = useNavigate()
 	const currAuth: UserI = useSelector((state: RootState) => state.auth.userInfo)
+	useEffect(() => {
+		checkValidQuestion()
+	}, [])
 	const onModifyUserList = (data: any) => {
 		const newUser = user.map((item, index) => {
 			if (item.id === currAuth.id) {
@@ -55,23 +63,23 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 			dispatch(
 				modifyUser(
 					onModifyUserList(
-						Object.entries({ [state.questionDetail.id]: 'optionOne' }),
+						Object.entries({ [state?.questionDetail?.id]: 'optionOne' }),
 					),
 				),
 			)
 			dispatch(
-				addUserAnsweredQuestion({ [state.questionDetail.id]: 'optionOne' }),
+				addUserAnsweredQuestion({ [state?.questionDetail?.id]: 'optionOne' }),
 			)
 		} else {
 			dispatch(
 				modifyUser(
 					onModifyUserList(
-						Object.entries({ [state.questionDetail.id]: 'optionTwo' }),
+						Object.entries({ [state?.questionDetail?.id]: 'optionTwo' }),
 					),
 				),
 			)
 			dispatch(
-				addUserAnsweredQuestion({ [state.questionDetail.id]: 'optionTwo' }),
+				addUserAnsweredQuestion({ [state?.questionDetail?.id]: 'optionTwo' }),
 			)
 		}
 	}
@@ -81,14 +89,14 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 		getCurrentUserAns()
 	}, [])
 	const getCurrentUserAns = () => {
-		if (currAuth.answers[state.questionDetail.id] !== undefined) {
-			setCurrentAnswer(currAuth.answers[state.questionDetail.id])
+		if (currAuth.answers[state?.questionDetail?.id] !== undefined) {
+			setCurrentAnswer(currAuth.answers[state?.questionDetail?.id])
 		}
 	}
 	const getTotalAnswer = () => {
 		user.forEach((item, index) => {
 			Object.entries(item.answers).forEach((item, index) => {
-				if (item[0] === state.questionDetail.id) {
+				if (item[0] === state?.questionDetail?.id) {
 					if (item[1] === 'optionOne') {
 						setVote((before) => {
 							return {
@@ -108,8 +116,14 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 			})
 		})
 	}
-	console.log('user', currAuth)
-	console.log('ques', state.questionDetail)
+	const { questionId } = useParams()
+
+	const checkValidQuestion = () => {
+		if (state) {
+		} else {
+			nav('/not-found')
+		}
+	}
 	const showPercent = () => {
 		console.log('option1', vote.optionOne)
 		console.log('option2', vote.optionTwo)
@@ -149,7 +163,7 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 						isSelectFirst === 0 && styles.setHover,
 
 						isSelectFirst === 1 ||
-						state.questionDetail.selectedValue === 'optionOne'
+						state?.questionDetail?.selectedValue === 'optionOne'
 							? styles.selectedContainer
 							: '',
 					].join(' ')}
@@ -169,7 +183,7 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 						(isSelectFirst !== 0 || isAnswer) && styles.disableOpinion,
 						isSelectFirst === 0 && styles.setHover,
 						isSelectFirst === 2 ||
-						state.questionDetail.selectedValue === 'optionTwo'
+						state?.questionDetail?.selectedValue === 'optionTwo'
 							? styles.selectedContainer
 							: '',
 					].join(' ')}
@@ -188,7 +202,7 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 			<div className={styles.container}>
 				<div className={styles.leftSideContainer}>
 					<img
-						src={state.questionDetail.author[0].avatarURL}
+						src={state?.questionDetail?.author[0]?.avatarURL}
 						className={styles.avatarImage}
 					/>
 					<div className={styles.userAsked}>{selectedUser?.name} </div>
@@ -200,8 +214,8 @@ export default function UserQuestionDetail({ currentUser }: UserQuestionI) {
 							<div className={styles.wouldYouRatherText}>Would you rather?</div>
 						</div>
 						{ChoiceOptions(
-							state.questionDetail.optionOne.text,
-							state.questionDetail.optionTwo.text,
+							state?.questionDetail?.optionOne?.text,
+							state?.questionDetail?.optionTwo?.text,
 						)}
 
 						<div className={styles.bottomContainer}>

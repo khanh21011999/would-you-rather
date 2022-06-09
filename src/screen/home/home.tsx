@@ -2,7 +2,7 @@ import React, { CSSProperties, useEffect, useState } from 'react'
 import Header from '../../component/header/header'
 import styles from './home.module.css'
 import { useNavigate } from 'react-router-dom'
-import { useLocation } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import { LocationParams, questionI, UserI } from '../../interface/interface'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -16,12 +16,15 @@ import UserQuestion from '../../component/user-question/user-question'
 
 export default function Home() {
 	const params: LocationParams = useLocation()
-
+	const { userId } = useParams()
+	const nav = useNavigate()
 	const user: UserI[] = useSelector((state: RootState) => state.user)
 	const dispatch: AppDispatch = useDispatch()
 	const question: questionI[] = useSelector(
 		(state: RootState) => state.question,
 	)
+	const [valid, setValid] = useState(false)
+
 	const currentUser = useSelector((state: RootState) => state.auth)
 	const answeredQuestion = useSelector(
 		(item: RootState) => item.answeredQuestion,
@@ -76,7 +79,31 @@ export default function Home() {
 		})
 		return formatted
 	}
+
+	const checkValidUser = () => {
+		let validValue = false
+		user.forEach((item) => {
+			if (item.id === userId) {
+				validValue = true
+			}
+		})
+		return validValue
+	}
+	useEffect(() => {
+		validNavigation()
+	}, [valid])
+
+	const validNavigation = () => {
+		console.log('valid', valid)
+		if (checkValidUser()) {
+			return
+		} else {
+			nav('/not-found')
+		}
+		return
+	}
 	console.log('userlist', user)
+	console.log('params', userId)
 
 	// const formattedAnswerQuestion = () => {
 	// 	console.log(Object.entries(currentUser.userInfo.answers))

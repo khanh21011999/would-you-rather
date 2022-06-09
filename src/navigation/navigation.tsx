@@ -1,6 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Routes, Route, Link, Outlet, Navigate } from 'react-router-dom'
+import {
+	Routes,
+	Route,
+	Link,
+	Outlet,
+	Navigate,
+	useLocation,
+} from 'react-router-dom'
 import { RootState } from '../redux/store'
 import UserQuestionDetail from '../screen/detail-user-question/detail-user-question'
 
@@ -19,7 +26,7 @@ export default function Navigation() {
 				<Route path="/questions/:questionId" element={<UserQuestionDetail />} />
 				<Route path="/leaderboard" element={<Leaderboard />} />
 				<Route path="/add" element={<NewQuestion />} />
-				<Route path="*" element={<div>Nothing here</div>} />
+				<Route path="*" element={<NotFoundScreen />} />
 				<Route path="/not-found" element={<NotFoundScreen />} />
 			</Route>
 
@@ -28,6 +35,11 @@ export default function Navigation() {
 	)
 }
 const PrivateRoute = () => {
+	const location = useLocation()
 	const auth = useSelector((state: RootState) => state.auth.isLogin)
-	return auth ? <Outlet /> : <Navigate to={'/'} />
+	return auth ? (
+		<Outlet />
+	) : (
+		<Navigate to={'/'} replace state={{ from: location }} />
+	)
 }
